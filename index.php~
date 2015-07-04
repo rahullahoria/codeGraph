@@ -1,0 +1,26 @@
+<?php
+require_once 'Structures/Graph.php';
+require_once 'Structures/Graph/Node.php';
+ 
+$nonDirectedGraph = new Structures_Graph(false);
+ 
+$nodeA = new Structures_Graph_Node();
+$nodeB = new Structures_Graph_Node();
+$nodeC = new Structures_Graph_Node();
+$nodeD = new Structures_Graph_Node();
+$nodeE = new Structures_Graph_Node();
+ 
+$nonDirectedGraph ->addNode($nodeA);
+$nonDirectedGraph ->addNode($nodeB);
+$nonDirectedGraph ->addNode($nodeC);
+$nonDirectedGraph ->addNode($nodeD);
+$nonDirectedGraph ->addNode($nodeE);
+ 
+$nodeA->connectTo($nodeB);
+$nodeB->connectTo($nodeC);
+$nodeB->connectTo($nodeD);
+$nodeD->connectTo($nodeC);
+$nodeC->connectTo($nodeE);
+$nodeE->connectTo($nodeD);
+
+?>
