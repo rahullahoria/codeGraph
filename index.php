@@ -45,31 +45,25 @@ for ($i=0; $i < count($codeArray) -1; $i++) {
 		}
 	//}
 }
-
+var_dump($newCodeArray);
 $graph = array();
 
 for ($i=0; $i < count($newCodeArray) ; $i++) { 
 	$line = $newCodeArray[$i];
 	if(!is_array($graph[$i]))
 		$graph[$i] = array();
-	
-	if(substr($line, 0,1) == "if"){
-		$k=$i;
-		while ($newCodeArray[$k] == "")
-			$k++;
-		$graph[$k] = array($i+1);
+	if(substr($line, 0,2) == "if"){
+		$k = getCloseNode($newCodeArray,$i);
+		echo "=============== $k ===============";
+		$graph[$i] = array($k);
 	}
 	elseif (substr($line, 0, 3) == "for") {
-		$k=$i;
-		while ($newCodeArray[$k] == "")
-			$k++;
-		$graph[$k] = array($i+1);	
+		$k = getCloseNode($newCodeArray,$i);
+		$graph[$k] = array($i);	
 	}
-	elseif (substr($line, 0,4) == "while") {
-		$k=$i;
-		while ($newCodeArray[$k] == "")
-			$k++;
-		$graph[$k] = array($i+1);
+	elseif (substr($line, 0,5) == "while") {
+		$k = getCloseNode($newCodeArray,$i);
+		$graph[$k] = array($i);
 	}
 
 	else {
@@ -86,6 +80,29 @@ for ($i=0; $i < count($newCodeArray) ; $i++) {
 
 var_dump($graph);
 
+function getCloseNode($array,$i){
+	$stack = array("x");
+	while ( count($stack) > 0){
+		$i++;
+		$line = $array[$i];
+		if(substr($line, 0,1) == "if"){
+			array_push($stack, "x");
+		}
+		elseif (substr($line, 0, 3) == "for") {
+			array_push($stack, "x");	
+		}
+		elseif (substr($line, 0,4) == "while") {
+			array_push($stack, "x");
+		}
+		elseif ($line == "") {
+			array_pop($stack);
+		}
+		
+	}
+
+	return $i+1;
+
+}
 ?>
 <!DOCTYPE html>
 <html>
