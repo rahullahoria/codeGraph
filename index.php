@@ -63,7 +63,6 @@ for ($i=0; $i < count($newCodeArray) ; $i++) {
 		$graph[$i] = array();
 	if(substr($line, 0,2) == "if"){
 		$k = getCloseNode($newCodeArray,$i);
-		echo "=============== $k ===============";
 		$graph[$i] = array($k);
 	}
 	elseif (substr($line, 0, 3) == "for") {
@@ -105,19 +104,23 @@ $toDrawGraph = $graph;
 
 $nodesArray = array();
 $edgesArray = array();
+
 foreach($toDrawGraph as $node => $edges) {
   
 	$nodesArray[] = array("data" => array(id => "$node"));
-	$edgesArray[] = array("data" => array(
-										"id" => $edges[0].$edges[1], 
+	foreach ($edges as $key => $value) {
+		$edgesArray[] = array("data" => array(
+										"id" => $node.$value, 
 										"weight" => 1,
-										"source" => $edges[0], 
-										"target" => $edges[1]
+										"source" => $node, 
+										"target" => $value
 										));
+	}
+	
 
 
 }
-$jsonArray = array( array("nodes" => $nodesArray, "edges" => $edgesArray ) );
+$jsonArray = array( 0 => array("nodes" => $nodesArray, "edges" => $edgesArray ) );
 $nodesjson = "nodes: [".$nodesjson."]";
 $edgesjson = "edges: [".$edgesjson."]";
 
@@ -222,8 +225,15 @@ function getCloseNode($array,$i){
 		        'transition-property': 'background-color, line-color, target-arrow-color',
 		        'transition-duration': '0.5s'
 		      }),
+		       options : {
+                    // where you have the Cytoscape Web SWF
+                    swfPath: "/swf/CytoscapeWeb",
+                    fitToScreen: false,
+                    // where you have the Flash installer SWF
+                    flashInstallerPath: "/swf/playerProductInstall"
+                },
 
-		  elements: <?= json_encode($jsonArray) ?>,
+		  elements: <? echo  "{'nodes':" . json_encode( $nodesArray).",'edges':". json_encode($edgesArray)."}";  ?>,
 
 		  layout: {
 		    name: 'breadthfirst',
