@@ -76,7 +76,6 @@ for ($i=0; $i < count($newCodeArray) ; $i++) {
 
 	else {
 		if($newCodeArray[$i] == ""){
-			print_r($graph[$i]);
 			
 		}	
 		
@@ -86,7 +85,6 @@ for ($i=0; $i < count($newCodeArray) ; $i++) {
 
 }
 
-var_dump($graph);
 /*	$toDrawGraph = array( 
 						array(1,4),
 						array(2,8),
@@ -101,28 +99,49 @@ var_dump($graph);
 $toDrawGraph = $graph;
 //$output = array();
 //(array("nodes"), array("edges")
+/*
+nodes: [
+        { data: { id: 'a' } },
+        { data: { id: 'b' } },
+        { data: { id: 'c' } },
+        { data: { id: 'd' } },
+        { data: { id: 'e' } },
+        { data: { id: 'f' } },
+        { data: { id: 'g' } },
+        { data: { id: 'h' } },
+        { data: { id: 'i' } }
+      ], 
 
-$nodesArray = array();
-$edgesArray = array();
+      edges: [
+        { data: { id: 'ab', weight: 1, source: 'a', target: 'b' } },
+	{ data: { id: 'ca', weight: 2, source: 'c', target: 'a' } },
+        { data: { id: 'ac', weight: 2, source: 'a', target: 'c' } },
+	{ data: { id: 'ca', weight: 2, source: 'c', target: 'a' } },
+        { data: { id: 'bd', weight: 3, source: 'b', target: 'd' } },
+        { data: { id: 'be', weight: 4, source: 'b', target: 'e' } },
+        { data: { id: 'cf', weight: 5, source: 'c', target: 'f' } },
+        { data: { id: 'cg', weight: 6, source: 'c', target: 'g' } },
+        { data: { id: 'ah', weight: 7, source: 'a', target: 'h' } },
+        { data: { id: 'hi', weight: 8, source: 'h', target: 'i' } },
+	{ data: { id: 'ci', weight: 18, source: 'c', target: 'i' } }  
+      ]
 
+*/
+$notedStr = "{ nodes: [\n";
+$edgeStr =  "edges: [\n";
 foreach($toDrawGraph as $node => $edges) {
   
-	$nodesArray[] = array("data" => array(id => "$node"));
+  	$notedStr .=  "{ data: { id: '".$node."', name: '".trim(preg_replace('/\s\s+/', ' ', addslashes($newCodeArray[$node]) ))."' } },\n";
+	
 	foreach ($edges as $key => $value) {
-		$edgesArray[] = array("data" => array(
-										"id" => $node.$value, 
-										"weight" => 1,
-										"source" => $node, 
-										"target" => $value
-										));
+		$edgeStr .= "{ data: { id: 'a".$node.$value."', weight: $node, source: '".$node."', target: '".$value."' } },\n"; 
+		
 	}
 	
 
 
 }
-$jsonArray = array( 0 => array("nodes" => $nodesArray, "edges" => $edgesArray ) );
-$nodesjson = "nodes: [".$nodesjson."]";
-$edgesjson = "edges: [".$edgesjson."]";
+$jsonEcho = $notedStr." ], ". $edgeStr . " ]}\n";
 
 
 function getCloseNode($array,$i){
@@ -208,7 +227,8 @@ function getCloseNode($array,$i){
 		  style: cytoscape.stylesheet()
 		    .selector('node')
 		      .css({
-		        'content': 'data(id)'
+		        
+		        'content': 'data(name)'
 		      })
 		    .selector('edge')
 		      .css({
@@ -225,31 +245,25 @@ function getCloseNode($array,$i){
 		        'transition-property': 'background-color, line-color, target-arrow-color',
 		        'transition-duration': '0.5s'
 		      }),
-		       options : {
-                    // where you have the Cytoscape Web SWF
-                    swfPath: "/swf/CytoscapeWeb",
-                    fitToScreen: false,
-                    // where you have the Flash installer SWF
-                    flashInstallerPath: "/swf/playerProductInstall"
-                },
+		  
 
-		  elements: <? echo  "{'nodes':" . json_encode( $nodesArray).",'edges':". json_encode($edgesArray)."}";  ?>,
+		  elements: <?= $jsonEcho    ?>,
 
 		  layout: {
 		    name: 'breadthfirst',
 		    directed: true,
-		    roots: '#a',
+		    roots: '#0',
 		    padding: 5
 		  },
 
 		  ready: function(){
 		    window.cy = this;
 
-		    var dijkstra = cy.elements().dijkstra('#f',function(){
+		    var dijkstra = cy.elements().dijkstra('#0',function(){
 		      return this.data('weight');
 		    },false);
 
-		    var bfs = dijkstra.pathTo( cy.$('#i') );
+		    var bfs = dijkstra.pathTo( cy.$('#22') );
 		    var x=0;
 		    var highlightNextEle = function(){
 		     var el=bfs[x];
