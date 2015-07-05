@@ -177,10 +177,68 @@ function getCloseNode($array,$i){
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <script src="http://cytoscape.github.io/cytoscape.js/api/cytoscape.js-latest/cytoscape.min.js"></script>
 
+
+
+
+	<!--Bootstrap Stylesheet [ REQUIRED ]-->
+	<link href="v2.2/css/bootstrap.min.css" rel="stylesheet">
+
+
+	<!--Nifty Stylesheet [ REQUIRED ]-->
+	<link href="v2.2/css/nifty.min.css" rel="stylesheet">
+
+
+
+
 </head>
 <body>
-<div class="row">
-						<div class="col-lg-5 col-md-5 col-lg-offset-1 col-md-offset-1">
+
+
+
+	<!--NAVBAR-->
+		<!--===================================================-->
+		<header id="navbar">
+			<div id="navbar-container">
+
+				<!--Brand logo & name-->
+				<!--================================-->
+				<div class="navbar-header">
+					<a href="#" class="navbar-brand">
+						
+						<div class="brand-title">
+							<span class="brand-text">Code Graph</span>
+						</div>
+					</a>
+				</div>
+				<!--================================-->
+				<!--End brand logo & name-->
+
+
+				<!--Navbar Dropdown-->
+				<!--================================-->
+				<div class="navbar-content clearfix">
+					<ul class="nav navbar-top-links pull-left">
+						
+						
+					</ul>
+					<ul class="nav navbar-top-links pull-right">
+
+						
+					</ul>
+				</div>
+				<!--================================-->
+				<!--End Navbar Dropdown-->
+
+
+			</div>
+		</header>
+		<!--===================================================-->
+		<!--END NAVBAR-->
+
+
+
+					<div class="row" style="margin-top : 65px;">
+						<div class="col-lg-8 col-md-8 col-lg-offset-2 col-md-offset-2">
 							<div class="panel">
 								<div class="panel-heading">
 									<h3 class="panel-title">Code Text Area</h3>
@@ -191,7 +249,7 @@ function getCloseNode($array,$i){
 								<form class="" method="POST">
 									<div class="panel-body">
 										
-										<textarea placeholder="Enter your code" name = "text_form" rows="13" class="">
+										<textarea placeholder="Enter your code" name = "text_form" rows="22" class="form-control">
 										</textarea>
 									</div>
 									<div class="panel-footer text-right">
@@ -204,15 +262,19 @@ function getCloseNode($array,$i){
 							</div>
 
 						</div>
-						<div class="col-lg-5 col-md-5">
+					</div>
+
+					<div class="row" style="margin-top : 65px;">
+						<div class="col-lg-8 col-md-8 col-lg-offset-2 col-md-offset-2">
+
 							<div class="panel">
 								<div class="panel-heading">
 									<h3 class="panel-title">Formed Graph</h3>
 								</div>
 								<div class="panel-body">
 				
-					<div id="cy"></div>								
-									</div>
+									<div id="cy"></div>								
+								</div>
 							</div>
 						</div>
 					</div>
