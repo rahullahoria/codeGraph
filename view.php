@@ -1,3 +1,4 @@
+<?php include "logic.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,6 +28,11 @@
 	<!--Page Load Progress Bar [ OPTIONAL ]-->
 	<link href="v2.2/plugins/pace/pace.min.css" rel="stylesheet">
 	<script src="v2.2/plugins/pace/pace.min.js"></script>
+
+
+	
+	
+
 
 
 	
@@ -151,7 +157,7 @@
 									<h3 class="panel-title">Formed Graph</h3>
 								</div>
 								<div class="panel-body">
-				
+									<div id="cy"></div>
 									
 								</div>
 							</div>
@@ -208,7 +214,10 @@
 	<!--Form Component [ SAMPLE ]-->
 	<script src="v2.2/js/demo/form-component.js"></script>
 
-	
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+
+	<script src="http://cytoscape.github.io/cytoscape.js/api/cytoscape.js-latest/cytoscape.min.js"></script>
+
 	<!--
 
 	REQUIRED
@@ -256,7 +265,11 @@
 		        'transition-duration': '0.5s'
 		      }),
 
-		  elements: <?= json_encode($jsonArray) ?>,
+		  elements: <? 
+		  				echo  "{'nodes':" . json_encode( $nodesArray).
+		  				",'edges':". json_encode($edgesArray)."}"; 
+		  			 ?>,
+
 
 		  layout: {
 		    name: 'breadthfirst',
