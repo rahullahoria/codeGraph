@@ -69,6 +69,10 @@ for ($i=0; $i < count($newCodeArray) ; $i++) {
 		$k = getCloseNode($newCodeArray,$i);
 		$graph[$k] = array($i);	
 	}
+	elseif (substr($line, 0, 7) == "foreach") {
+		$k = getCloseNode($newCodeArray,$i);
+		$graph[$k] = array($i);	
+	}
 	elseif (substr($line, 0,5) == "while") {
 		$k = getCloseNode($newCodeArray,$i);
 		$graph[$k] = array($i);
@@ -96,6 +100,123 @@ for ($i=0; $i < count($newCodeArray) ; $i++) {
 						array(1,2)
 					);*/
 
+global $allPaths;
+$allPaths = array();
+
+getPaths($graph, 0, count($newCodeArray)-1, array());
+
+function getPaths($graph, $current, $end, $currentPath){
+
+	
+	if($end == $current){
+		global $allPaths;
+		$allPaths[] = $currentPath;
+		return;  
+	}
+		
+	
+	foreach ($graph[$current] as $key => $value) {
+		if(checkNodePresentMoreThen2( $currentPath, $value)){
+			$currentPath[] = $value;
+			getPaths($graph,$value, $end, $currentPath);
+		}
+	}
+	return;
+
+
+}
+
+echo "------------Graphs----------<br/>";
+var_dump($graph);
+
+$subGraphs = getSubGraphs($graph);
+echo "------------subGraphs----------<br/>";
+var_dump($subGraphs);
+function getSubGraphs($graph){
+	
+	$subGraphs = array();
+	$wasFor = false;
+
+	foreach ($graph as $key => $value) {
+		if(count($value) >= 2){
+			
+			foreach ($value as $k => $v) {
+				$max = 0;
+				if($max < $v)
+					$max = $v;
+				if ($key > $v  ) {
+					$subGraphs[] = array($v,$key);
+					$wasFor = true; 
+				}
+			}
+
+			if(!$wasFor){
+				
+				$subGraphs[] = array($key,$max);
+				$wasFor = false;
+
+
+			}
+		}
+	}
+
+	return $subGraphs;
+
+}
+
+$setOfDivition = getSet($subGraphs);
+
+function getSet($graph){
+	$set = array();
+	foreach ($graph as $key => $value) {
+		foreach ($value as $k => $v) {
+			$set[] = $v; 
+		}
+	}
+
+	return array_unique($set);
+
+}
+echo "------------------setOfDivition----------------";
+var_dump($setOfDivition);
+
+$divideGraph = getDivideGraph($graph,$setOfDivition);
+
+function getDivideGraph($graph,$setOfDivition){
+	$divideGraph = array();
+	$i=0;
+	foreach ($graph as $key => $value) {
+		if(in_array($key, $setOfDivition)){
+			$divideGraph[$i] = array();
+			$i++;
+
+
+		}
+		$divideGraph[$i] = $value;
+		$i++;
+	}
+	return $divideGraph;
+}
+
+echo "-----------divide Graph----------------<br/>";
+
+var_dump($divideGraph);
+
+function checkNodePresentMoreThen2($arr,$node){
+	$count=0;
+	foreach ($arr as $key => $value) {
+		if($value == $node)
+			$count++;
+	}
+	if($count >= 2)
+		return false;
+	return true;
+}
+//var_dump($allPaths);
+$nodeComplaxity = 0;
+foreach ($allPaths as $key => $value) {
+	$nodeComplaxity += count($value);
+}
 $toDrawGraph = $graph;
 //$output = array();
 //(array("nodes"), array("edges")
@@ -143,6 +264,22 @@ foreach($toDrawGraph as $node => $edges) {
 }
 $jsonEcho = $notedStr." ], ". $edgeStr . " ]}\n";
 
+$subnotedStr = "{ nodes: [\n";
+$subedgeStr =  "edges: [\n";
+foreach($divideGraph as $node => $edges) {
+  
+  	$subnotedStr .=  "{ data: { id: '".$node."', name: '".trim(preg_replace('/\s\s+/', ' ', addslashes($newCodeArray[$node]) ))."' } },\n";
+	
+	foreach ($edges as $key => $value) {
+		$subedgeStr .= "{ data: { id: 'a".$node.$value."', weight: $node, source: '".$node."', target: '".$value."' } },\n"; 
+		
+	}
+	
+
+
+}
+$subjsonEcho = $subnotedStr." ], ". $subedgeStr . " ]}\n";
+
 
 function getCloseNode($array,$i){
 	$stack = array("x");
@@ -153,6 +290,9 @@ function getCloseNode($array,$i){
 			array_push($stack, "x");
 		}
 		elseif (substr($line, 0, 3) == "for") {
+			array_push($stack, "x");	
+		}
+		elseif (substr($line, 0, 7) == "foreach") {
 			array_push($stack, "x");	
 		}
 		elseif (substr($line, 0,4) == "while") {
@@ -270,10 +410,27 @@ function getCloseNode($array,$i){
 							<div class="panel">
 								<div class="panel-heading">
 									<h3 class="panel-title">Formed Graph</h3>
+									<h3 class="panel-title">Node Complaxity by standard approch: <?= $nodeComplaxity ?></h3>
 								</div>
 								<div class="panel-body">
 				
 									<div id="cy"></div>								
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row" style="margin-top : 65px;">
+						<div class="col-lg-8 col-md-8 col-lg-offset-2 col-md-offset-2">
+
+							<div class="panel">
+								<div class="panel-heading">
+									<h3 class="panel-title">Formed Graph</h3>
+									<h3 class="panel-title">Node Complaxity by standard approch: <?= $nodeComplaxity ?></h3>
+								</div>
+								<div class="panel-body">
+				
+									<div id="subGraphs"></div>								
 								</div>
 							</div>
 						</div>
@@ -290,7 +447,7 @@ function getCloseNode($array,$i){
 		    .selector('node')
 		      .css({
 		        
-		        'content': 'data(name)'
+		        'content': 'data(id)'
 		      })
 		    .selector('edge')
 		      .css({
@@ -310,6 +467,64 @@ function getCloseNode($array,$i){
 		  
 
 		  elements: <?= $jsonEcho    ?>,
+
+		  layout: {
+		    name: 'breadthfirst',
+		    directed: true,
+		    roots: '#0',
+		    padding: 5
+		  },
+
+		  ready: function(){
+		    window.cy = this;
+
+		    var dijkstra = cy.elements().dijkstra('#0',function(){
+		      return this.data('weight');
+		    },false);
+
+		    var bfs = dijkstra.pathTo( cy.$('#22') );
+		    var x=0;
+		    var highlightNextEle = function(){
+		     var el=bfs[x];
+		      el.addClass('highlighted');
+		      if(x<bfs.length){
+		        x++;
+		        setTimeout(highlightNextEle, 500);
+		      }
+		       };
+		    highlightNextEle();
+		  }
+		});
+
+		});
+
+		$(function(){ // on dom ready
+
+		$('#subGraphs').cytoscape({
+		  style: cytoscape.stylesheet()
+		    .selector('node')
+		      .css({
+		        
+		        'content': 'data(id)'
+		      })
+		    .selector('edge')
+		      .css({
+		        'target-arrow-shape': 'triangle',
+		        'width': 4,
+		        'line-color': '#ddd',
+		        'target-arrow-color': '#ddd'
+		      })
+		    .selector('.highlighted')
+		      .css({
+		        'background-color': '#61bffc',
+		        'line-color': '#61bffc',
+		        'target-arrow-color': '#61bffc',
+		        'transition-property': 'background-color, line-color, target-arrow-color',
+		        'transition-duration': '0.5s'
+		      }),
+		  
+
+		  elements: <?= $subjsonEcho    ?>,
 
 		  layout: {
 		    name: 'breadthfirst',
