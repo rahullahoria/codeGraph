@@ -1,63 +1,30 @@
 <?php
-	$code = "
-              #include<stdio.h>
-              #include<conio.h>
-              #include<math.h>
-              #define EPS 0.00005
-              #define F(x) (x*x*x + 1)/2
-              #define f(x)  x*x*x - 2*x + 1
+	$code = "'#include <stdio.h>'+'            #include <math.h>'+'            int i,n,t,k;'+'            int a[100000],b[100000];'+'            int merge(l,r,u)'+'              int l,r,u;'+'            { int i,j,k;'+'              i=l; j=r; k=l;'+'              while (i<r && j<u) { '+'                if (a[i]<=a[j]) {b[k]=a[i]; i++;} '+'                else {b[k]=a[j]; j++;}'+'                k++;'+'              }'+'              while (i<r) { '+'                b[k]=a[i]; i++; k++;'+'              }'+'              while (j<u) { '+'                b[k]=a[j]; j++; k++;'+'              }'+'              for (k=l; k<u; k++) { '+'                a[k]=b[k]; '+'              }'+'            }'+'            sort()'+'            { int k,u;'+'              k=1;'+'              while (k<n) {'+'                i=1;'+'                while (i+k<=n) {'+'                  u=i+k*2;'+'                  if (u>n) u=n+1;'+'                  merge(i,i+k,u);'+'                  i=i+k*2;'+'                }'+'                k=k*2;'+'              }'+'            }'+'            main()'+'            { printf(\"input size '+'\");'+'              scanf(\"%d\",&n); '+'            /*  for (i=1;i<=n;i++) scanf(\"%d\",&a[i]); */'+'              for (i=1;i<=n;i++) a[i]=random()%1000;'+'              t=clock();'+'              sort();'+'              for (i=1;i<=10;i++) printf(\"%d \",a[i]);'+'              printf(\"'+'\");'+'              printf(\"time= %d millisec'+'\",(clock()-t)/1000);'+'            }'";
+	
 
-              int n;
+	$refinedCode = preg_replace("/'+/","\\n'",$code);
 
-              void iter();
+	$codeForJs = preg_replace("/+\\n/"," ",$refinedCode);
 
-              void main()
-              {
-              clrscr();
-              printf(\"\n Solution by ITERATION METHOD \");
-              printf(\"\n\n Equation is -> x*x*x - 2*x + 1 = 0\n\");
-              printf(\"\n Enter the no. of iterations \");
-              scanf(\"%d\",&n);
-              iter();
-              getch();
-              }
+	echo $refinedCode ."\n";
 
-              void iter()
-               {
-               int i=0;
-               float x1,x2,x0;
-               float f1,f2,f0,error;
-               for(x1=1; ;x1++)
-                  {
-                  f1=f(x1);
-                  if(f1>0)
-                    break;
-                  }
-               for(x0=x1-1; ;x0--)
-                  {
-                  f0=f(x0);
-                  if(f0<0)
-                    break;
-                  }
-               x2=(x0+x1)/2;
-               printf(\"\n\n\t\t The 1 approximatrion to the root is : %f\",x2);
-               for(;i<n-1;i++)
-                  {
-                  f2=F(x2);
-                  printf(\"\n\n\t\t The %d approximatrion to the root is : %f\",i+2,f2);
-                  x2=F(x2);
-                  error=fabs(f2-f1);
-                  if(error<EPS)
-                     break;
-                  f1=f2;
-                  }
-               if(error>EPS)
-                 printf(\"\n\n\t NOTE :- The no. of iterations are not sufficient.\");
-               printf(\"\n\t\t ROOT  = %.4f (Correct to 4 Decimal places)\",f2);
-              }";
 
-	$refinedCode = preg_replace("/\n/",'\'+\'',$code);
+	//$refinedCode = preg_replace("\s+/","\\n'+'",$code);
 
-	echo $refinedCode;
+	//$refinedCode = preg_replace("/\n\s+/","\\n'+'",$code);
+	//echo "----------------------------------code for -js---------------";
+	//$codeForJs = preg_replace("/'+/","\\n'\n+",$refinedCode);
+	//$refinedCode = preg_replace("/\s+/'+","/' '/'+ ",$code);
+	//$refinedCode = preg_replace("/\s+/",' ',$code);
 
+	//$codeForJs = preg_replace("/'+/","+",$refinedCode);
+
+	//$codeForJsnew = preg_replace("/+ + +/","/\\n'+'/",$refinedCode);
+
+
+	//echo $refinedCode ."\n";
+	echo "----------------------------------code for -js---------------\n";
+	echo $codeForJs ."\n";
+	//echo "----------------------------------code for -js---------------\n";
+	//echo $codeForJsnew ."\n";*/
 ?>

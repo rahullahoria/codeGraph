@@ -523,37 +523,6 @@ function getCloseNode($array,$i){
 											
 									</div>
 
-									<div class="panel panel-default panel-colorful" onclick="insertCode('quick_sort');" style="margin-bottom: 0px;">
-										<div class="pad-all media">
-											<div class="media-left">
-												<span class="icon-wrap icon-wrap-xs">
-													<i class="fa fa-users fa-2x"></i>
-												</span>
-											</div>
-											<div class="media-body">
-												<p class="h3 text-thin media-heading">Quick Sort</p>
-											</div>
-										</div>
-											
-									</div>
-
-									<div class="panel panel-info panel-colorful" onclick="insertCode('quick_sort');" style="margin-bottom: 0px;">
-										<div class="pad-all media">
-											<div class="media-left">
-												<span class="icon-wrap icon-wrap-xs">
-													<i class="fa fa-users fa-2x"></i>
-												</span>
-											</div>
-											<div class="media-body">
-												<p class="h3 text-thin media-heading">Quick Sort</p>
-											</div>
-										</div>
-											
-									</div>
-
-
-
-
 								</div>
 							</div>
 
@@ -583,7 +552,7 @@ function getCloseNode($array,$i){
 							<div class="panel">
 								<div class="panel-heading panel-heading panel panel-dark panel-colorful">
 									<h3 class="panel-title">Formed Graph</h3>
-									<h3 class="panel-title">Node Complaxity by standard approch: <?= $nodeComplaxity ?></h3>
+									<h3 class="panel-title panel-success panel-colorful">Node Complaxity by standard approch: <?= $nodeComplaxity ?></h3>
 								</div>
 								<div class="panel-body">
 				
