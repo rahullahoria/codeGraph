@@ -54,7 +54,7 @@ for ($i=0; $i < count($codeArray) -1; $i++) {
 		}
 	//}
 }
-var_dump($newCodeArray);
+//var_dump($newCodeArray);
 $graph = array();
 
 for ($i=0; $i < count($newCodeArray) ; $i++) { 
@@ -126,11 +126,11 @@ function getPaths($graph, $current, $end, $currentPath){
 
 }
 
-echo "------------Graphs----------<br/>";
+//echo "------------Graphs----------<br/>";
 var_dump($graph);
 
 $subGraphs = getSubGraphs($graph);
-echo "------------subGraphs----------<br/>";
+//echo "------------subGraphs----------<br/>";
 var_dump($subGraphs);
 function getSubGraphs($graph){
 	
@@ -177,8 +177,8 @@ function getSet($graph){
 	return array_unique($set);
 
 }
-echo "------------------setOfDivition----------------";
-var_dump($setOfDivition);
+//echo "------------------setOfDivition----------------";
+//var_dump($setOfDivition);
 
 $divideGraph = getDivideGraph($graph,$setOfDivition);
 
@@ -198,9 +198,9 @@ function getDivideGraph($graph,$setOfDivition){
 	return $divideGraph;
 }
 
-echo "-----------divide Graph----------------<br/>";
+//echo "-----------divide Graph----------------<br/>";
 
-var_dump($divideGraph);
+//var_dump($divideGraph);
 
 function checkNodePresentMoreThen2($arr,$node){
 	$count=0;
@@ -313,7 +313,7 @@ function getCloseNode($array,$i){
 <head>
 <link href="style.css" rel="stylesheet" />
 <meta charset=utf-8 />
-<title>Animated BFS</title>
+<title>Code Graph | Generate Flow Graph</title>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <script src="http://cytoscape.github.io/cytoscape.js/api/cytoscape.js-latest/cytoscape.min.js"></script>
 
@@ -407,7 +407,7 @@ function getCloseNode($array,$i){
 
 							<div class="panel">
 								<div class="panel-heading panel panel-dark panel-colorful">
-									<h3 class="panel-title">Sample Codes</h3>
+									<h4 class="panel-title">Sample Codes</h4>
 								</div>
 								<div class="panel-body" style="padding-left: 0px; padding-right: 0px;">
 
@@ -419,7 +419,7 @@ function getCloseNode($array,$i){
 												</span>
 											</div>
 											<div class="media-body">
-												<p class="h3 text-thin media-heading">Quick Sort</p>
+												<p class="h4 text-thin media-heading">Quick Sort</p>
 											</div>
 										</div>
 											
@@ -433,7 +433,7 @@ function getCloseNode($array,$i){
 												</span>
 											</div>
 											<div class="media-body">
-												<p class="h3 text-thin media-heading">Merge Sort</p>
+												<p class="h4 text-thin media-heading">Merge Sort</p>
 											</div>
 										</div>
 											
@@ -447,7 +447,7 @@ function getCloseNode($array,$i){
 												</span>
 											</div>
 											<div class="media-body">
-												<p class="h3 text-thin media-heading">Bubble Sort</p>
+												<p class="h4 text-thin media-heading">Bubble Sort</p>
 											</div>
 										</div>
 											
@@ -461,7 +461,7 @@ function getCloseNode($array,$i){
 												</span>
 											</div>
 											<div class="media-body">
-												<p class="h3 text-thin media-heading">Heap Sort</p>
+												<p class="h4 text-thin media-heading">Heap Sort</p>
 											</div>
 										</div>
 											
@@ -475,7 +475,7 @@ function getCloseNode($array,$i){
 												</span>
 											</div>
 											<div class="media-body">
-												<p class="h3 text-thin media-heading">Selection Sort</p>
+												<p class="h4 text-thin media-heading">Selection Sort</p>
 											</div>
 										</div>
 											
@@ -489,21 +489,7 @@ function getCloseNode($array,$i){
 												</span>
 											</div>
 											<div class="media-body">
-												<p class="h3 text-thin media-heading">Binary Search</p>
-											</div>
-										</div>
-											
-									</div>
-
-									<div class="panel panel-purple panel-colorful" onclick="insertCode('generate_iterative_code');" style="margin-bottom: 0px;">
-										<div class="pad-all media">
-											<div class="media-left">
-												<span class="icon-wrap icon-wrap-xs">
-													<i class="fa fa-users fa-2x"></i>
-												</span>
-											</div>
-											<div class="media-body">
-												<p class="h3 text-thin media-heading">Generate Iterative Code</p>
+												<p class="h4 text-thin media-heading">Binary Search</p>
 											</div>
 										</div>
 											
@@ -517,7 +503,21 @@ function getCloseNode($array,$i){
 												</span>
 											</div>
 											<div class="media-body">
-												<p class="h3 text-thin media-heading">Linear Search</p>
+												<p class="h4 text-thin media-heading">Linear Search</p>
+											</div>
+										</div>
+									</div>
+
+
+									<div class="panel panel-purple panel-colorful" onclick="insertCode('generate_iterative_code');" style="margin-bottom: 0px;">
+										<div class="pad-all media">
+											<div class="media-left">
+												<span class="icon-wrap icon-wrap-xs">
+													<i class="fa fa-users fa-2x"></i>
+												</span>
+											</div>
+											<div class="media-body">
+												<p class="h4 text-thin media-heading">Generate Iterative Code</p>
 											</div>
 										</div>
 											
@@ -533,7 +533,7 @@ function getCloseNode($array,$i){
 						<div class="col-lg-4 col-md-4 ">
 							<div class="panel">
 								<div class="panel-heading panel-heading panel panel-dark panel-colorful">
-									<h3 class="panel-title">Formed Graph</h3>
+									<h3 class="panel-title">Graph Nodes</h3>
 								</div>
 								<div class="panel-body">
 				
@@ -552,7 +552,7 @@ function getCloseNode($array,$i){
 							<div class="panel">
 								<div class="panel-heading panel-heading panel panel-dark panel-colorful">
 									<h3 class="panel-title">Formed Graph</h3>
-									<h3 class="panel-title panel-success panel-colorful">Node Complaxity by standard approch: <?= $nodeComplaxity ?></h3>
+									<h4 class="panel-title panel-success panel-colorful">Node Complaxity by standard approch: <?= $nodeComplaxity ?></h4>
 								</div>
 								<div class="panel-body">
 				
@@ -563,12 +563,12 @@ function getCloseNode($array,$i){
 					</div>
 
 					<div class="row" style="margin-top : 65px;">
-						<div class="col-lg-8 col-md-8 col-lg-offset-2 col-md-offset-2">
+						<div class="col-lg-10 col-md-10 col-lg-offset-1 col-md-offset-1">
 
 							<div class="panel">
 								<div class="panel-heading panel panel-dark panel-colorful">
-									<h3 class="panel-title">Formed Graph</h3>
-									<h3 class="panel-title panel-success panel-colorful" >Node Complaxity by standard approch: <?= $nodeComplaxity ?></h3>
+									<h3 class="panel-title">Formed Subgraph</h3>
+									<h4 class="panel-title panel-success panel-colorful" >Node Complaxity by standard approch: <?= $nodeComplaxity ?></h4>
 								</div>
 								<div class="panel-body">
 				
