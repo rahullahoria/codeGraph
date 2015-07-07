@@ -328,7 +328,7 @@ function getCloseNode($array,$i){
 	<link href="v2.2/css/nifty.min.css" rel="stylesheet">
 
 
-
+	<script src="testCodes.js"></script>	
 
 </head>
 <body>
@@ -378,18 +378,18 @@ function getCloseNode($array,$i){
 
 
 					<div class="row" style="margin-top : 65px;">
-						<div class="col-lg-8 col-md-8 col-lg-offset-2 col-md-offset-2">
+						<div class="col-lg-8 col-md-8 col-lg-offset-1 col-md-offset-1">
 							<div class="panel">
-								<div class="panel-heading">
+								<div class="panel-heading panel panel-dark panel-colorful">
 									<h3 class="panel-title">Code Text Area</h3>
 								</div>
 					
 								<!--No Label Form-->
 								<!--===================================================-->
-								<form class="" method="POST">
+								<form class="" method="POST" id="codeForm">
 									<div class="panel-body">
 										
-										<textarea placeholder="Enter your code" name = "text_form" rows="22" class="form-control">
+										<textarea placeholder="Enter your code" name = "text_form" id="codeTA" rows="22" class="form-control">
 										</textarea>
 									</div>
 									<div class="panel-footer text-right">
@@ -402,13 +402,186 @@ function getCloseNode($array,$i){
 							</div>
 
 						</div>
+
+						<div class="col-lg-2 col-md-2">
+
+							<div class="panel">
+								<div class="panel-heading panel panel-dark panel-colorful">
+									<h3 class="panel-title">Sample Codes</h3>
+								</div>
+								<div class="panel-body" style="padding-left: 0px; padding-right: 0px;">
+
+									<div class="panel panel-success panel-colorful" onclick="insertCode('quick_sort');" style="margin-bottom: 0px;">
+										<div class="pad-all media">
+											<div class="media-left">
+												<span class="icon-wrap icon-wrap-xs">
+													<i class="fa fa-users fa-2x"></i>
+												</span>
+											</div>
+											<div class="media-body">
+												<p class="h3 text-thin media-heading">Quick Sort</p>
+											</div>
+										</div>
+											
+									</div>
+
+									<div class="panel panel-primary panel-colorful" onclick="insertCode('merge_sort');" style="margin-bottom: 0px;">
+										<div class="pad-all media">
+											<div class="media-left">
+												<span class="icon-wrap icon-wrap-xs">
+													<i class="fa fa-users fa-2x"></i>
+												</span>
+											</div>
+											<div class="media-body">
+												<p class="h3 text-thin media-heading">Merge Sort</p>
+											</div>
+										</div>
+											
+									</div>
+
+									<div class="panel panel-pink panel-colorful" onclick="insertCode('bubble_sort');" style="margin-bottom: 0px;">
+										<div class="pad-all media">
+											<div class="media-left">
+												<span class="icon-wrap icon-wrap-xs">
+													<i class="fa fa-users fa-2x"></i>
+												</span>
+											</div>
+											<div class="media-body">
+												<p class="h3 text-thin media-heading">Bubble Sort</p>
+											</div>
+										</div>
+											
+									</div>
+
+									<div class="panel panel-warning panel-colorful" onclick="insertCode('heap_sort');" style="margin-bottom: 0px;">
+										<div class="pad-all media">
+											<div class="media-left">
+												<span class="icon-wrap icon-wrap-xs">
+													<i class="fa fa-users fa-2x"></i>
+												</span>
+											</div>
+											<div class="media-body">
+												<p class="h3 text-thin media-heading">Heap Sort</p>
+											</div>
+										</div>
+											
+									</div>
+
+									<div class="panel panel-danger panel-colorful" onclick="insertCode('selection_sort');" style="margin-bottom: 0px;">
+										<div class="pad-all media">
+											<div class="media-left">
+												<span class="icon-wrap icon-wrap-xs">
+													<i class="fa fa-users fa-2x"></i>
+												</span>
+											</div>
+											<div class="media-body">
+												<p class="h3 text-thin media-heading">Selection Sort</p>
+											</div>
+										</div>
+											
+									</div>
+
+									<div class="panel panel-mint panel-colorful" onclick="insertCode('binary_search');" style="margin-bottom: 0px;">
+										<div class="pad-all media">
+											<div class="media-left">
+												<span class="icon-wrap icon-wrap-xs">
+													<i class="fa fa-users fa-2x"></i>
+												</span>
+											</div>
+											<div class="media-body">
+												<p class="h3 text-thin media-heading">Binary Search</p>
+											</div>
+										</div>
+											
+									</div>
+
+									<div class="panel panel-purple panel-colorful" onclick="insertCode('generate_iterative_code');" style="margin-bottom: 0px;">
+										<div class="pad-all media">
+											<div class="media-left">
+												<span class="icon-wrap icon-wrap-xs">
+													<i class="fa fa-users fa-2x"></i>
+												</span>
+											</div>
+											<div class="media-body">
+												<p class="h3 text-thin media-heading">Generate Iterative Code</p>
+											</div>
+										</div>
+											
+									</div>
+
+									<div class="panel panel-warning panel-colorful" onclick="insertCode('linear_search');" style="margin-bottom: 0px;">
+										<div class="pad-all media">
+											<div class="media-left">
+												<span class="icon-wrap icon-wrap-xs">
+													<i class="fa fa-users fa-2x"></i>
+												</span>
+											</div>
+											<div class="media-body">
+												<p class="h3 text-thin media-heading">Linear Search</p>
+											</div>
+										</div>
+											
+									</div>
+
+									<div class="panel panel-default panel-colorful" onclick="insertCode('quick_sort');" style="margin-bottom: 0px;">
+										<div class="pad-all media">
+											<div class="media-left">
+												<span class="icon-wrap icon-wrap-xs">
+													<i class="fa fa-users fa-2x"></i>
+												</span>
+											</div>
+											<div class="media-body">
+												<p class="h3 text-thin media-heading">Quick Sort</p>
+											</div>
+										</div>
+											
+									</div>
+
+									<div class="panel panel-info panel-colorful" onclick="insertCode('quick_sort');" style="margin-bottom: 0px;">
+										<div class="pad-all media">
+											<div class="media-left">
+												<span class="icon-wrap icon-wrap-xs">
+													<i class="fa fa-users fa-2x"></i>
+												</span>
+											</div>
+											<div class="media-body">
+												<p class="h3 text-thin media-heading">Quick Sort</p>
+											</div>
+										</div>
+											
+									</div>
+
+
+
+
+								</div>
+							</div>
+
+						</div>
 					</div>
 
 					<div class="row" style="margin-top : 65px;">
-						<div class="col-lg-8 col-md-8 col-lg-offset-2 col-md-offset-2">
+						<div class="col-lg-4 col-md-4 ">
+							<div class="panel">
+								<div class="panel-heading panel-heading panel panel-dark panel-colorful">
+									<h3 class="panel-title">Formed Graph</h3>
+								</div>
+								<div class="panel-body">
+				
+									<?php 
+
+										foreach ($newCodeArray as $key => $value) {
+											echo $key. " : ". $value. "<br/>";
+										}
+									?>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-lg-8 col-md-8 ">
 
 							<div class="panel">
-								<div class="panel-heading">
+								<div class="panel-heading panel-heading panel panel-dark panel-colorful">
 									<h3 class="panel-title">Formed Graph</h3>
 									<h3 class="panel-title">Node Complaxity by standard approch: <?= $nodeComplaxity ?></h3>
 								</div>
@@ -424,9 +597,9 @@ function getCloseNode($array,$i){
 						<div class="col-lg-8 col-md-8 col-lg-offset-2 col-md-offset-2">
 
 							<div class="panel">
-								<div class="panel-heading">
+								<div class="panel-heading panel panel-dark panel-colorful">
 									<h3 class="panel-title">Formed Graph</h3>
-									<h3 class="panel-title">Node Complaxity by standard approch: <?= $nodeComplaxity ?></h3>
+									<h3 class="panel-title panel-success panel-colorful" >Node Complaxity by standard approch: <?= $nodeComplaxity ?></h3>
 								</div>
 								<div class="panel-body">
 				
@@ -555,6 +728,10 @@ function getCloseNode($array,$i){
 		});
 
 		});	
+
+
+	
+	
 </script>
 
 </body>
