@@ -132,6 +132,9 @@ var_dump($graph);
 $subGraphs = getSubGraphs($graph);
 //echo "------------subGraphs----------<br/>";
 var_dump($subGraphs);
+
+//echo "------------All Paths----------<br/>";
+//var_dump($allPaths);
 function getSubGraphs($graph){
 	
 	$subGraphs = array();
@@ -530,7 +533,7 @@ function getCloseNode($array,$i){
 					</div>
 
 					<div class="row" style="margin-top : 65px;">
-						<div class="col-lg-4 col-md-4 ">
+						<div class="col-lg-3 col-md-3 ">
 							<div class="panel">
 								<div class="panel-heading panel-heading panel panel-dark panel-colorful">
 									<h3 class="panel-title">Graph Nodes</h3>
@@ -547,8 +550,7 @@ function getCloseNode($array,$i){
 							</div>
 						</div>
 
-						<div class="col-lg-8 col-md-8 ">
-
+						<div class="col-lg-6 col-md-6 ">
 							<div class="panel">
 								<div class="panel-heading panel-heading panel panel-dark panel-colorful">
 									<h3 class="panel-title">Formed Graph</h3>
@@ -557,6 +559,32 @@ function getCloseNode($array,$i){
 								<div class="panel-body">
 				
 									<div id="cy"></div>								
+								</div>
+							</div>
+						
+						</div>
+						
+						<div class="col-lg-3 col-md-3 ">
+							<div class="panel">
+								<div class="panel-heading panel panel-dark panel-colorful">
+									<h3 class="panel-title"> All paths</h3>
+								</div>
+								<div class="panel-body">
+
+									<?php 
+										foreach ($allPaths as $key => $value) {
+											
+											echo "<i>Path: </i>".($key + 1).": ";
+											$lastElement = end($value);
+											foreach ($value as $key1 => $value1) {
+												echo  " " . $value1 ;
+												if ($lastElement != $value1)
+													echo " -> ";
+											}
+											echo "<br /> <br />";
+										}
+									?>
+
 								</div>
 							</div>
 						</div>
