@@ -54,7 +54,7 @@ for ($i=0; $i < count($codeArray) -1; $i++) {
 		}
 	//}
 }
-var_dump($newCodeArray);
+//var_dump($newCodeArray);
 $graph = array();
 
 for ($i=0; $i < count($newCodeArray) ; $i++) { 
@@ -126,12 +126,12 @@ function getPaths($graph, $current, $end, $currentPath){
 
 }
 
-echo "------------Graphs----------<br/>";
-var_dump($graph);
+//echo "------------Graphs----------<br/>";
+//var_dump($graph);
 
 $subGraphs = getSubGraphs($graph);
-echo "------------subGraphs----------<br/>";
-var_dump($subGraphs);
+//echo "------------subGraphs----------<br/>";
+//var_dump($subGraphs);
 function getSubGraphs($graph){
 	
 	$subGraphs = array();
@@ -177,8 +177,8 @@ function getSet($graph){
 	return array_unique($set);
 
 }
-echo "------------------setOfDivition----------------";
-var_dump($setOfDivition);
+//echo "------------------setOfDivition----------------";
+//var_dump($setOfDivition);
 global $allSubPaths;
 $allSubPaths = array();
 
@@ -221,7 +221,7 @@ function getDivideGraph($graph,$setOfDivition){
 
 	return $divideGraph;
 }
-echo "-----------------------sub paths-----------------------<br/>";
+//echo "-----------------------sub paths-----------------------<br/>";
 
 function getPathsOfSub($divideGraph, $current, $end, $currentPath){
 
@@ -244,7 +244,7 @@ function getPathsOfSub($divideGraph, $current, $end, $currentPath){
 
 }
 $subGraphNodeComplexity = getSubNodeComplexity();
-var_dump("sub graph",$subGraphNodeComplexity);
+//var_dump("sub graph",$subGraphNodeComplexity);
 function getSubNodeComplexity(){
 	$nodeComplaxity = 0;
 	global $allSubPaths;
@@ -252,15 +252,12 @@ function getSubNodeComplexity(){
 	foreach ($all as $key => $value) {
 		$nodeComplaxity += count($value);
 	}
-	var_dump($all);
+	//var_dump($all);
 	return $nodeComplaxity;
 }
-echo "-----------divide Graph----------------<br/>";
+//echo "-----------divide Graph----------------<br/>";
 
 var_dump($divideGraph);
-
-
-
 
 function checkNodePresentMoreThen2($arr,$node){
 	$count=0;
@@ -590,10 +587,10 @@ function getCloseNode($array,$i){
 					</div>
 
 					<div class="row" style="margin-top : 65px;">
-						<div class="col-lg-4 col-md-4 ">
+						<div class="col-lg-3 col-md-3 ">
 							<div class="panel">
 								<div class="panel-heading panel-heading panel panel-dark panel-colorful">
-									<h3 class="panel-title">Formed Graph</h3>
+									<h3 class="panel-title">Formed CodeArray</h3>
 								</div>
 								<div class="panel-body">
 				
@@ -607,7 +604,7 @@ function getCloseNode($array,$i){
 							</div>
 						</div>
 
-						<div class="col-lg-8 col-md-8 ">
+						<div class="col-lg-6 col-md-6 ">
 
 							<div class="panel">
 								<div class="panel-heading panel-heading panel panel-dark panel-colorful">
@@ -620,15 +617,41 @@ function getCloseNode($array,$i){
 								</div>
 							</div>
 						</div>
+
+
+	
+						<div class="col-lg-3 col-md-3 ">
+							<div class="panel">
+								<div class="panel-heading panel panel-dark panel-colorful">
+									<h3 class="panel-title"> All paths</h3>
+								</div>
+								<div class="panel-body">
+
+									<?php 
+										foreach ($allPaths as $key => $value) {
+											
+											echo "<i>Path: </i>".($key + 1)."(".count($value).")".": ";
+											$lastElement = end($value);
+											foreach ($value as $key1 => $value1) {
+												echo  " " . $value1 ;
+												if ($lastElement != $value1)
+													echo " -> ";
+											}
+											echo "<br /> <br />";
+										}
+									?>
+								</div>
+							</div>
+						</div>
 					</div>
 
 					<div class="row" style="margin-top : 65px;">
-						<div class="col-lg-8 col-md-8 col-lg-offset-2 col-md-offset-2">
+						<div class="col-lg-7 col-md-7 col-lg-offset-1 col-md-offset-1">
 
 							<div class="panel">
 								<div class="panel-heading panel panel-dark panel-colorful">
-									<h3 class="panel-title">Formed Graph</h3>
-									<h3 class="panel-title panel-success panel-colorful" >Node Complaxity by standard approch: <?= $nodeComplaxity ?></h3>
+									<h3 class="panel-title">Formed SubGraph</h3>
+									<h3 class="panel-title panel-success panel-colorful" >Node Complaxity by standard approch: <?= $subGraphNodeComplexity ?></h3>
 								</div>
 								<div class="panel-body">
 				
@@ -636,6 +659,35 @@ function getCloseNode($array,$i){
 								</div>
 							</div>
 						</div>
+
+						<div class="col-lg-3 col-md-3 ">
+							<div class="panel">
+								<div class="panel-heading panel panel-dark panel-colorful">
+									<h3 class="panel-title"> All Subpaths</h3>
+								</div>
+								<div class="panel-body">
+
+									<?php 
+										//var_dump($allSubPaths);
+										echo "<br />";
+										foreach ($allSubPaths as $key => $value) {
+
+											//var_dump( $value) ; echo "<br /><br />";
+	
+											echo "<i>Path: </i>".($key + 1)."(".count($value).")".": ";
+											$lastElement = end($value);
+											foreach ($value as $key1 => $value1) {
+												echo  " " . $value1 ;
+												if ($lastElement != $value1)
+													echo " -> ";
+											}
+											echo "<br /> <br />";
+										}
+									?>
+								</div>
+							</div>
+						</div>
+
 					</div>
 
 
