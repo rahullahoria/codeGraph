@@ -54,7 +54,7 @@ for ($i=0; $i < count($codeArray) -1; $i++) {
 		}
 	//}
 }
-var_dump($newCodeArray);
+//var_dump($newCodeArray);
 $graph = array();
 
 for ($i=0; $i < count($newCodeArray) ; $i++) { 
@@ -126,12 +126,15 @@ function getPaths($graph, $current, $end, $currentPath){
 
 }
 
-echo "------------Graphs----------<br/>";
+//echo "------------Graphs----------<br/>";
 var_dump($graph);
 
 $subGraphs = getSubGraphs($graph);
-echo "------------subGraphs----------<br/>";
+//echo "------------subGraphs----------<br/>";
 var_dump($subGraphs);
+
+//echo "------------All Paths----------<br/>";
+//var_dump($allPaths);
 function getSubGraphs($graph){
 	
 	$subGraphs = array();
@@ -177,10 +180,15 @@ function getSet($graph){
 	return array_unique($set);
 
 }
+<<<<<<< HEAD
 echo "------------------setOfDivition----------------";
 var_dump($setOfDivition);
 global $allSubPaths;
 $allSubPaths = array();
+=======
+//echo "------------------setOfDivition----------------";
+//var_dump($setOfDivition);
+>>>>>>> fa39d18a18a1a3c190e726a42194cf66aff46a7b
 
 $divideGraph = getDivideGraph($graph,$setOfDivition);
 
@@ -241,6 +249,7 @@ function getPathsOfSub($divideGraph, $current, $end, $currentPath){
 	}
 	return;
 
+<<<<<<< HEAD
 
 }
 $subGraphNodeComplexity = getSubNodeComplexity();
@@ -256,8 +265,11 @@ function getSubNodeComplexity(){
 	return $nodeComplaxity;
 }
 echo "-----------divide Graph----------------<br/>";
+=======
+//echo "-----------divide Graph----------------<br/>";
+>>>>>>> fa39d18a18a1a3c190e726a42194cf66aff46a7b
 
-var_dump($divideGraph);
+//var_dump($divideGraph);
 
 
 
@@ -373,7 +385,7 @@ function getCloseNode($array,$i){
 <head>
 <link href="style.css" rel="stylesheet" />
 <meta charset=utf-8 />
-<title>Animated BFS</title>
+<title>Code Graph | Generate Flow Graph</title>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <script src="http://cytoscape.github.io/cytoscape.js/api/cytoscape.js-latest/cytoscape.min.js"></script>
 
@@ -467,7 +479,7 @@ function getCloseNode($array,$i){
 
 							<div class="panel">
 								<div class="panel-heading panel panel-dark panel-colorful">
-									<h3 class="panel-title">Sample Codes</h3>
+									<h4 class="panel-title">Sample Codes</h4>
 								</div>
 								<div class="panel-body" style="padding-left: 0px; padding-right: 0px;">
 
@@ -479,7 +491,7 @@ function getCloseNode($array,$i){
 												</span>
 											</div>
 											<div class="media-body">
-												<p class="h3 text-thin media-heading">Quick Sort</p>
+												<p class="h4 text-thin media-heading">Quick Sort</p>
 											</div>
 										</div>
 											
@@ -493,7 +505,7 @@ function getCloseNode($array,$i){
 												</span>
 											</div>
 											<div class="media-body">
-												<p class="h3 text-thin media-heading">Merge Sort</p>
+												<p class="h4 text-thin media-heading">Merge Sort</p>
 											</div>
 										</div>
 											
@@ -507,7 +519,7 @@ function getCloseNode($array,$i){
 												</span>
 											</div>
 											<div class="media-body">
-												<p class="h3 text-thin media-heading">Bubble Sort</p>
+												<p class="h4 text-thin media-heading">Bubble Sort</p>
 											</div>
 										</div>
 											
@@ -521,7 +533,7 @@ function getCloseNode($array,$i){
 												</span>
 											</div>
 											<div class="media-body">
-												<p class="h3 text-thin media-heading">Heap Sort</p>
+												<p class="h4 text-thin media-heading">Heap Sort</p>
 											</div>
 										</div>
 											
@@ -535,7 +547,7 @@ function getCloseNode($array,$i){
 												</span>
 											</div>
 											<div class="media-body">
-												<p class="h3 text-thin media-heading">Selection Sort</p>
+												<p class="h4 text-thin media-heading">Selection Sort</p>
 											</div>
 										</div>
 											
@@ -549,21 +561,7 @@ function getCloseNode($array,$i){
 												</span>
 											</div>
 											<div class="media-body">
-												<p class="h3 text-thin media-heading">Binary Search</p>
-											</div>
-										</div>
-											
-									</div>
-
-									<div class="panel panel-purple panel-colorful" onclick="insertCode('generate_iterative_code');" style="margin-bottom: 0px;">
-										<div class="pad-all media">
-											<div class="media-left">
-												<span class="icon-wrap icon-wrap-xs">
-													<i class="fa fa-users fa-2x"></i>
-												</span>
-											</div>
-											<div class="media-body">
-												<p class="h3 text-thin media-heading">Generate Iterative Code</p>
+												<p class="h4 text-thin media-heading">Binary Search</p>
 											</div>
 										</div>
 											
@@ -577,7 +575,21 @@ function getCloseNode($array,$i){
 												</span>
 											</div>
 											<div class="media-body">
-												<p class="h3 text-thin media-heading">Linear Search</p>
+												<p class="h4 text-thin media-heading">Linear Search</p>
+											</div>
+										</div>
+									</div>
+
+
+									<div class="panel panel-purple panel-colorful" onclick="insertCode('generate_iterative_code');" style="margin-bottom: 0px;">
+										<div class="pad-all media">
+											<div class="media-left">
+												<span class="icon-wrap icon-wrap-xs">
+													<i class="fa fa-users fa-2x"></i>
+												</span>
+											</div>
+											<div class="media-body">
+												<p class="h4 text-thin media-heading">Generate Iterative Code</p>
 											</div>
 										</div>
 											
@@ -590,10 +602,10 @@ function getCloseNode($array,$i){
 					</div>
 
 					<div class="row" style="margin-top : 65px;">
-						<div class="col-lg-4 col-md-4 ">
+						<div class="col-lg-3 col-md-3 ">
 							<div class="panel">
 								<div class="panel-heading panel-heading panel panel-dark panel-colorful">
-									<h3 class="panel-title">Formed Graph</h3>
+									<h3 class="panel-title">Graph Nodes</h3>
 								</div>
 								<div class="panel-body">
 				
@@ -607,28 +619,53 @@ function getCloseNode($array,$i){
 							</div>
 						</div>
 
-						<div class="col-lg-8 col-md-8 ">
-
+						<div class="col-lg-6 col-md-6 ">
 							<div class="panel">
 								<div class="panel-heading panel-heading panel panel-dark panel-colorful">
 									<h3 class="panel-title">Formed Graph</h3>
-									<h3 class="panel-title panel-success panel-colorful">Node Complaxity by standard approch: <?= $nodeComplaxity ?></h3>
+									<h4 class="panel-title panel-success panel-colorful">Node Complaxity by standard approch: <?= $nodeComplaxity ?></h4>
 								</div>
 								<div class="panel-body">
 				
 									<div id="cy"></div>								
 								</div>
 							</div>
+						
+						</div>
+						
+						<div class="col-lg-3 col-md-3 ">
+							<div class="panel">
+								<div class="panel-heading panel panel-dark panel-colorful">
+									<h3 class="panel-title"> All paths</h3>
+								</div>
+								<div class="panel-body">
+
+									<?php 
+										foreach ($allPaths as $key => $value) {
+											
+											echo "<i>Path: </i>".($key + 1).": ";
+											$lastElement = end($value);
+											foreach ($value as $key1 => $value1) {
+												echo  " " . $value1 ;
+												if ($lastElement != $value1)
+													echo " -> ";
+											}
+											echo "<br /> <br />";
+										}
+									?>
+
+								</div>
+							</div>
 						</div>
 					</div>
 
 					<div class="row" style="margin-top : 65px;">
-						<div class="col-lg-8 col-md-8 col-lg-offset-2 col-md-offset-2">
+						<div class="col-lg-10 col-md-10 col-lg-offset-1 col-md-offset-1">
 
 							<div class="panel">
 								<div class="panel-heading panel panel-dark panel-colorful">
-									<h3 class="panel-title">Formed Graph</h3>
-									<h3 class="panel-title panel-success panel-colorful" >Node Complaxity by standard approch: <?= $nodeComplaxity ?></h3>
+									<h3 class="panel-title">Formed Subgraph</h3>
+									<h4 class="panel-title panel-success panel-colorful" >Node Complaxity by standard approch: <?= $nodeComplaxity ?></h4>
 								</div>
 								<div class="panel-body">
 				
