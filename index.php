@@ -179,15 +179,19 @@ function getSet($graph){
 }
 echo "------------------setOfDivition----------------";
 var_dump($setOfDivition);
+global $allSubPaths;
+$allSubPaths = array();
 
 $divideGraph = getDivideGraph($graph,$setOfDivition);
+
+
 
 function getDivideGraph($graph,$setOfDivition){
 	$divideGraph = array();
 	$i=0;
 	foreach ($graph as $key => $value) {
 		if(in_array($key, $setOfDivition)){
-			$divideGraph[$i] = array();
+			$divideGraph[$i] = array("#");
 			$i++;
 
 
@@ -195,12 +199,68 @@ function getDivideGraph($graph,$setOfDivition){
 		$divideGraph[$i] = $value;
 		$i++;
 	}
+
+	$lastBreak = 0;
+	foreach ($divideGraph as $key => $value) {
+		if($value[0] == "#"){
+			for($i=$lastBreak;$i <= $key; $i++){
+				foreach ($divideGraph[$i] as $k => $v) {
+					if($v > $key ){
+						unset($divideGraph[$k]); 
+					}
+					if($v < $lastBreak ){
+						unset($divideGraph[$k]);	
+					}
+				}
+			}
+			getPathsOfSub($graph, $lastBreak, $key -1, array());
+			$lastBreak = $key+1;
+		}
+	}
+	getPathsOfSub($graph, $lastBreak, $key -2, array());
+
 	return $divideGraph;
 }
+echo "-----------------------sub paths-----------------------<br/>";
 
+function getPathsOfSub($divideGraph, $current, $end, $currentPath){
+
+	if($end == $current){
+		global $allSubPaths;
+
+		$allSubPaths[] = $currentPath;
+		return;  
+	}
+		
+	
+	foreach ($divideGraph[$current] as $key => $value) {
+		if(checkNodePresentMoreThen2( $currentPath, $value)){
+			$currentPath[] = $value;
+			getPathsOfSub($divideGraph,$value, $end, $currentPath);
+		}
+	}
+	return;
+
+
+}
+$subGraphNodeComplexity = getSubNodeComplexity();
+var_dump("sub graph",$subGraphNodeComplexity);
+function getSubNodeComplexity(){
+	$nodeComplaxity = 0;
+	global $allSubPaths;
+	$all = $allSubPaths;
+	foreach ($all as $key => $value) {
+		$nodeComplaxity += count($value);
+	}
+	var_dump($all);
+	return $nodeComplaxity;
+}
 echo "-----------divide Graph----------------<br/>";
 
 var_dump($divideGraph);
+
+
+
 
 function checkNodePresentMoreThen2($arr,$node){
 	$count=0;
