@@ -732,11 +732,11 @@ function getCloseNode($array,$i){
 		  ready: function(){
 		    window.cy = this;
 
-		    var dijkstra = cy.elements().dijkstra('#0',function(){
+		    var dijkstra = cy.elements().dijkstra('#X',function(){
 		      return this.data('weight');
 		    },false);
 
-		    var bfs = dijkstra.pathTo( cy.$('#22') );
+		    var bfs = dijkstra.pathTo( cy.$('#y') );
 		    var x=0;
 		    var highlightNextEle = function(){
 		     var el=bfs[x];
@@ -790,11 +790,11 @@ function getCloseNode($array,$i){
 		  ready: function(){
 		    window.cy = this;
 
-		    var dijkstra = cy.elements().dijkstra('#0',function(){
+		    var dijkstra = cy.elements().dijkstra('#x',function(){
 		      return this.data('weight');
 		    },false);
 
-		    var bfs = dijkstra.pathTo( cy.$('#22') );
+		    var bfs = dijkstra.pathTo( cy.$('#y') );
 		    var x=0;
 		    var highlightNextEle = function(){
 		     var el=bfs[x];
